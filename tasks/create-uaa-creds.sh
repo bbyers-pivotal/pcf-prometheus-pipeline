@@ -10,7 +10,7 @@ echo "Getting UAA credentials..."
 cf_id=$($CURL --path=/api/v0/deployed/products | jq -r ".[].guid" | grep cf-)
 
 uaa_creds=$($CURL --path=/api/v0/deployed/products/$cf_id/credentials/.uaa.admin_client_credentials)
-
+echo $uaa_creds
 uaa_client=$(echo $uaa_creds | jq -r .credential.value.identity)
 uaa_secret=$(echo $uaa_creds | jq -r .credential.value.password)
 
